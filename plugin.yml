@@ -1,0 +1,5 @@
+name: NomadCraft
+main: craft.nomad.ClassTemplate
+version: 1.0
+api-version: 1.8
+commands:
