@@ -9,6 +9,7 @@ public class ClassTemplate extends JavaPlugin {
 		getServer().getPluginManager().registerEvents(new CombustListener(), this);
 		getServer().getPluginManager().registerEvents(new SpawnListener(), this);
 		getServer().getPluginManager().registerEvents(new BlockBreakListener(), this);
+		getServer().getPluginManager().registerEvents(new LeavesDecayListener(), this);
 		
 		
 		
