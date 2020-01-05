@@ -1,16 +1,10 @@
 package craft.nomad;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.entity.EntityCombustEvent;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
-import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.Creature;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.Monster;
 import org.bukkit.event.EventHandler;
 
 public class BlockBreakListener implements Listener {
@@ -23,7 +17,7 @@ public class BlockBreakListener implements Listener {
 		int bY = b.getY();
 		int bZ = b.getZ();
 		
-		//Bukkit.broadcastMessage("Type is: " + b.getType());
+		Bukkit.broadcastMessage("Type is: " + b.getType());
 		
 		switch(b.getType()) {
 		case CROPS:
@@ -60,7 +54,52 @@ public class BlockBreakListener implements Listener {
 						}
 				
 			}
+			
+			break;
+			
+		case SUGAR_CANE_BLOCK:
+			
+			int d = 1;
+			l = new Location(b.getWorld(), bX, bY, bZ);
+			while(l.getBlock().getType() == Material.SUGAR_CANE_BLOCK) {
 				
+				Bukkit.broadcastMessage("TYPE: " + l.getBlock().getType());
+				
+				l.getBlock().breakNaturally();
+				l = new Location(b.getWorld(), bX, bY - d, bZ);
+				++d;
+				
+				Bukkit.broadcastMessage("Current Y: " + l.getBlockY());
+				
+			}
+			
+			--d;
+			l.getBlock().setType(Material.SAND);
+		
+			int[][] cross2 = {{-1,0},{1,0},{0,1},{0,-1}};
+			
+			for(int i = 0; i < cross2.length; ++i) {
+				
+				l = new Location(b.getWorld(), bX + cross2[i][0], bY - d, bZ + cross2[i][1]);
+				
+				Bukkit.broadcastMessage("Block " + cross2[i][0] + "," + cross2[i][1] + " is " + l.getBlock().getType());
+				
+				if(l.getBlock().getType() == Material.WATER
+					|| l.getBlock().getType() == Material.STATIONARY_WATER){
+					
+					Bukkit.broadcastMessage("WATER FOUND! Replacing...");
+					
+					l.getBlock().setType(Material.SAND);
+					
+					break;
+						
+						}
+				
+			}
+			default:
+				
+				break;
+			
 			
 		}
 		
