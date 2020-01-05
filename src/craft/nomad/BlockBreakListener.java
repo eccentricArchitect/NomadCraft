@@ -34,23 +34,33 @@ public class BlockBreakListener implements Listener {
 			l.getBlock().setType(Material.SAND);
 			
 			break;
-		case MELON:
+		case MELON_BLOCK:
 		case PUMPKIN:
-			for(int i = 0; i < 3; ++i) {
-				for (int j = 0; j < 3; ++j) {
-					
-					l = new Location(b.getWorld(), bX + i, bY, bZ + j);
-					
-					if(l.getBlock().getType() == Material.MELON_STEM
+			
+			int[][] cross = {{-1,0},{1,0},{0,1},{0,-1}};
+			
+			for(int i = 0; i < cross.length; ++i) {
+				
+				l = new Location(b.getWorld(), bX + cross[i][0], bY, bZ + cross[i][1]);
+				
+				//Bukkit.broadcastMessage("Block " + cross[i][0] + "," + cross[i][1] + " is " + l.getBlock().getType());
+				
+				if(l.getBlock().getType() == Material.MELON_STEM
 						|| l.getBlock().getType() == Material.PUMPKIN_STEM){
+					
+					//Bukkit.broadcastMessage("STEM FOUND! Replacing...");
+					
+					l.getBlock().setType(Material.DEAD_BUSH);
 						
-						l = new Location(b.getWorld(), bX + i, bY - 1, bZ + j);
-						l.getBlock().setType(Material.SAND);
+					l = new Location(b.getWorld(), bX + cross[i][0], bY - 1, bZ + cross[i][1]);
+					l.getBlock().setType(Material.SAND);
+					
+					break;
 						
 						}
-				}
+				
 			}
-			
+				
 			
 		}
 		
