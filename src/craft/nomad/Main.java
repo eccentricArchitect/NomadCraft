@@ -13,6 +13,7 @@ public class Main extends JavaPlugin {
 		getServer().getPluginManager().registerEvents(new EntityDeathListener(), this);
 		getServer().getPluginManager().registerEvents(new BlockBurnListener(), this);
 		getServer().getPluginManager().registerEvents(new PlayerInteractEntityListener(), this);
+		getServer().getPluginManager().registerEvents(new PlayerInteractListener(), this);
 		
 		
 	}
