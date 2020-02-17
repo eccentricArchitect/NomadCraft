@@ -1,7 +1,7 @@
 package craft.nomad;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class ClassTemplate extends JavaPlugin {
+public class Main extends JavaPlugin {
 
 	@Override
 	public void onEnable() {
@@ -10,7 +10,9 @@ public class ClassTemplate extends JavaPlugin {
 		getServer().getPluginManager().registerEvents(new SpawnListener(), this);
 		getServer().getPluginManager().registerEvents(new BlockBreakListener(), this);
 		getServer().getPluginManager().registerEvents(new LeavesDecayListener(), this);
-		
+		getServer().getPluginManager().registerEvents(new EntityDeathListener(), this);
+		getServer().getPluginManager().registerEvents(new BlockBurnListener(), this);
+		getServer().getPluginManager().registerEvents(new PlayerInteractEntityListener(), this);
 		
 		
 	}

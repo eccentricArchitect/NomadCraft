@@ -96,6 +96,12 @@ public class BlockBreakListener implements Listener {
 						}
 				
 			}
+		case LEAVES:
+			
+			event.getBlock().getDrops().clear();
+			
+			break;
+		
 			default:
 				
 				break;

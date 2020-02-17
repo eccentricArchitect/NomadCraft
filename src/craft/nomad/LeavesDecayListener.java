@@ -1,7 +1,6 @@
 package craft.nomad;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.LeavesDecayEvent;
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
@@ -15,8 +14,6 @@ public class LeavesDecayListener implements Listener {
 		Block leaves = event.getBlock();
 		
 		event.setCancelled(true);
-		
-		Bukkit.broadcastMessage("cancelled.");
 		
 		leaves.getRelative(BlockFace.UP).setType(Material.FIRE);
 		
